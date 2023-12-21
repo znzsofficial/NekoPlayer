@@ -8,13 +8,12 @@ import android.view.ViewGroup
 import androidx.databinding.ObservableList
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import github.znzsofficial.nekoplayer.MainActivity
-import github.znzsofficial.nekoplayer.Music
 import github.znzsofficial.nekoplayer.SharedViewModel
 import github.znzsofficial.nekoplayer.adapter.MusicListAdapter
+import github.znzsofficial.nekoplayer.data.Music
 import github.znzsofficial.nekoplayer.databinding.FragmentListBinding
 import github.znzsofficial.utils.ExtendedMediaPlayer
 
@@ -56,7 +55,10 @@ class ListFragment : Fragment() {
             this.adapter = adapter
             layoutManager = LinearLayoutManager(mActivity)
         }
-        adapter.submitList(musicList)
+        adapter.apply {
+            setImageLoader(mActivity.requestBuilder)
+            submitList(musicList)
+        }
 
 
         musicList.addOnListChangedCallback(

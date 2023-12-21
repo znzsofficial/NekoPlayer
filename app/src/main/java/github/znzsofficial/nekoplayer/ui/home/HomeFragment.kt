@@ -13,7 +13,6 @@ import android.widget.CompoundButton
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.ViewModelProvider
-import com.bumptech.glide.Glide
 import com.bumptech.glide.RequestBuilder
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import github.znzsofficial.nekoplayer.MainActivity
@@ -53,8 +52,8 @@ class HomeFragment : Fragment() {
 
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
 
-        requestBuilder = Glide.with(this).asDrawable()
         mActivity = activity as MainActivity
+        requestBuilder = mActivity.requestBuilder
         retriever = mActivity.retriever
         mediaPlayer = mActivity.mediaPlayer
 
@@ -76,7 +75,7 @@ class HomeFragment : Fragment() {
             requestBuilder.load(it).into(binding.mImg)
         }
         // 点击fab后向音乐列表里添加 EditText 里的路径对应的音乐
-        mActivity.binding.fab.setOnClickListener {
+        binding.add.setOnClickListener {
             sharedViewModel.addMusic(homeViewModel.inputPath.value.toString(), retriever)
         }
 
@@ -122,7 +121,6 @@ class HomeFragment : Fragment() {
                 binding.progress.valueTo = music.length.toFloat()
                 // 设置进度条
                 homeViewModel.updateProgressEnabled(true)
-                //requestBuilder.load(music.picture).into(binding.mImg)
                 homeViewModel.updatePictureArray(music.picture)
                 homeViewModel.updateProgress(0.0f)
             } catch (e: IOException) {

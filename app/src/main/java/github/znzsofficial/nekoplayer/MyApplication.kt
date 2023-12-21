@@ -7,8 +7,7 @@ class MyApplication : Application() {
     override fun onCreate() {
         super.onCreate()
         DynamicColors.applyToActivitiesIfAvailable(this)
-        val crashHandler: CrashHandler = CrashHandler.getInstance()
         // 注册crashHandler
-        crashHandler.init(applicationContext)
+        CrashHandler.init(applicationContext)
     }
 }

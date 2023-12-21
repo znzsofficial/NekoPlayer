@@ -7,7 +7,7 @@ import android.os.HandlerThread
 import android.os.Looper
 import android.os.Message
 import android.util.Log
-import github.znzsofficial.nekoplayer.Music
+import github.znzsofficial.nekoplayer.data.Music
 import java.io.IOException
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors

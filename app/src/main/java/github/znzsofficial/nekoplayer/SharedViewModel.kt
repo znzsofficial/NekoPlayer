@@ -5,8 +5,8 @@ import androidx.databinding.ObservableArrayList
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import github.znzsofficial.nekoplayer.data.Music
 import java.io.File
-
 
 class SharedViewModel : ViewModel() {
 
@@ -37,8 +37,9 @@ class SharedViewModel : ViewModel() {
                 ?: 0L
         // 获取图片
         val picture = retriever.embeddedPicture ?: byteArrayOf()
+        val author = retriever.extractMetadata(MediaMetadataRetriever.METADATA_KEY_ARTIST) ?: "未知"
         val title = retriever.extractMetadata(MediaMetadataRetriever.METADATA_KEY_TITLE) ?: "未知"
-        val music = Music(path, title, duration / 1000, picture)
+        val music = Music(path, title, author, duration / 1000, picture)
         if (!musicList.contains(music)) {
             if (musicList.add(music)) {
                 currentMusicIndex = musicList.lastIndex
@@ -47,7 +48,7 @@ class SharedViewModel : ViewModel() {
     }
 
 
-    fun updateLoopState(bool:Boolean){
+    fun updateLoopState(bool: Boolean) {
         _isLoop.value = bool
     }
 }
