@@ -24,6 +24,12 @@ class SharedViewModel : ViewModel() {
      */
     val isLoop: LiveData<Boolean> = _isLoop
 
+    fun setCurrentMusic(music: Music) {
+        if (musicList.contains(music)) {
+            currentMusicIndex = musicList.indexOf(music)
+        }
+    }
+
     fun addMusic(path: String, retriever: MediaMetadataRetriever) {
         // 如果文件不存在就返回
         if (!File(path).isFile) {
