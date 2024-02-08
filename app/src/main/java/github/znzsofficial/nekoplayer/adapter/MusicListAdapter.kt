@@ -32,6 +32,9 @@ class MusicListAdapter : ListAdapter<Music, MusicListAdapter.ViewHolder>(MusicLi
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(item: Music) {
+            binding.itemContent.setOnClickListener{
+
+            }
             binding.title.text = item.title
             binding.author.text = item.author
             if (item.picture.isEmpty())

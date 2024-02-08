@@ -2,7 +2,9 @@ package github.znzsofficial.nekoplayer.ui.home
 
 import android.graphics.drawable.Drawable
 import android.media.MediaMetadataRetriever
+import android.os.Build
 import android.os.Bundle
+import android.os.Environment
 import android.os.PowerManager
 import android.text.Editable
 import android.text.TextWatcher
@@ -74,11 +76,15 @@ class HomeFragment : Fragment() {
         homeViewModel.pictureArray.observe(viewLifecycleOwner) {
             requestBuilder.load(it).into(binding.mImg)
         }
+        homeViewModel.inputPath.observe(viewLifecycleOwner) {
+            if (it != binding.edit.text.toString())
+                binding.edit.setText(it)
+        }
         // 点击fab后向音乐列表里添加 EditText 里的路径对应的音乐
         binding.add.setOnClickListener {
             sharedViewModel.addMusic(homeViewModel.inputPath.value.toString(), retriever)
         }
-
+        
         binding.edit.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {}
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}

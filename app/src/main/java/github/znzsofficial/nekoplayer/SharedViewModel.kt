@@ -24,6 +24,11 @@ class SharedViewModel : ViewModel() {
      */
     val isLoop: LiveData<Boolean> = _isLoop
 
+    fun updateLoopState(bool: Boolean) {
+        _isLoop.value = bool
+    }
+
+
     fun setCurrentMusic(music: Music) {
         if (musicList.contains(music)) {
             currentMusicIndex = musicList.indexOf(music)
@@ -53,8 +58,4 @@ class SharedViewModel : ViewModel() {
         }
     }
 
-
-    fun updateLoopState(bool: Boolean) {
-        _isLoop.value = bool
-    }
 }

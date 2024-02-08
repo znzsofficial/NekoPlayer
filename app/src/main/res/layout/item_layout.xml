@@ -5,7 +5,8 @@
     android:layout_height="wrap_content"
     android:clickable="true"
     android:padding="16dp"
-    android:layout_margin="16dp">
+    android:layout_margin="16dp"
+    android:id="@+id/itemContent">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
