@@ -63,7 +63,6 @@ class ExtendedMediaPlayer : MediaPlayer() {
             AudioAttributes.Builder() // 检测采样率输出
                 .setUsage(AudioAttributes.USAGE_UNKNOWN)
                 .setContentType(AudioAttributes.CONTENT_TYPE_MUSIC)
-                .setFlags(AudioAttributes.FLAG_AUDIBILITY_ENFORCED)
                 .build()
         )
 
